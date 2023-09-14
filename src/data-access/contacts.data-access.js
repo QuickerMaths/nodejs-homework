@@ -5,7 +5,13 @@ export default function makeContactDb({ model }) {
     return contacts;
   }
 
-  async function getById({ id }) {
+  async function findByProperty({ property, value }) {
+    const contact = await model.findOne({ [property]: value });
+
+    return contact;
+  }
+
+  async function findById({ id }) {
     const contact = await model.findById(id);
 
     return contact;
@@ -31,7 +37,8 @@ export default function makeContactDb({ model }) {
 
   return Object.freeze({
     findAll,
-    getById,
+    findByProperty,
+    findById,
     create,
     remove,
     update,
