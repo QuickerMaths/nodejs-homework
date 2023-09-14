@@ -5,3 +5,5 @@ class NotFoundError extends BaseError {
     super("NotFoundError", 404, message, true);
   }
 }
+
+export { NotFoundError };
