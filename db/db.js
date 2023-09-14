@@ -6,6 +6,7 @@ dotenv.config();
 mongoose.connect(process.env.DB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  dbName: "goit-nodejs",
 });
 
 const db = mongoose.connection;

@@ -1,7 +1,9 @@
 import { ServiceUnavailableError } from "../utils/errors/ServiceUnavailableError.js";
 
 export default function makePostContact({ contactsDb, validationService }) {
-  return async function postContact({ contactData }) {
+  return async function postContact(httpRequest) {
+    const contactData = httpRequest.body;
+
     await validationService({ contactData });
 
     const contact = await contactsDb.create(contactData);
@@ -15,7 +17,7 @@ export default function makePostContact({ contactsDb, validationService }) {
     return {
       status: "OK",
       statusCode: 201,
-      data: {
+      body: {
         contact,
       },
     };

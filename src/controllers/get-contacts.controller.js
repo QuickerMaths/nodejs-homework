@@ -4,14 +4,14 @@ export default function makeGetContacts({ contactsDb }) {
   return async function getContacts() {
     const contacts = await contactsDb.findAll();
 
-    if (!contacts) {
+    if (!contacts || contacts.length === 0) {
       throw new NotFoundError("No contacts found");
     }
 
     return {
       status: "OK",
       statusCode: 200,
-      data: {
+      body: {
         contacts,
       },
     };
