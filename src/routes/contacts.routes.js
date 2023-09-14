@@ -7,6 +7,7 @@ const router = express.Router();
 router
   .get("/", expressCallback(contactsController.getContacts))
   .get("/:id", expressCallback(contactsController.getContact))
-  .post("/", expressCallback(contactsController.postContact));
+  .post("/", expressCallback(contactsController.postContact))
+  .delete("/:id", expressCallback(contactsController.deleteContact));
 
 export default router;
