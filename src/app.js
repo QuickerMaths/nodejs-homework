@@ -3,7 +3,7 @@ import cors from "cors";
 import logger from "./middlewares/logger.js";
 import config from "./config/config.js";
 import db from "../db/db.js";
-import { BaseError } from "./utils/errors/BaseEror.js";
+import { BaseError } from "./utils/errors/BaseError.js";
 
 // import contactsRouter from "./routes/api/contacts.js";
 
