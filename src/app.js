@@ -1,6 +1,7 @@
 import express from "express";
 import logger from "morgan";
 import cors from "cors";
+import db from "../db/db.js";
 
 import contactsRouter from "./routes/api/contacts.js";
 
@@ -22,8 +23,10 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: err.message });
 });
 
-app.listen(3000, () => {
-  console.log("Server running. Use our API on port: 3000");
+db.once("open", () => {
+  app.listen(3000, () => {
+    console.log("Server running. Use our API on port: 3000");
+  });
 });
 
 export default app;
