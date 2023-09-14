@@ -5,6 +5,7 @@ import {
 
 export default function makePutContact({ contactsDb, validationService }) {
   return async function putContact(httpRequest) {
+    const { id } = httpRequest.params;
     const contactData = httpRequest.body;
 
     await validationService({ contact: contactData });
@@ -20,7 +21,7 @@ export default function makePutContact({ contactsDb, validationService }) {
       );
     }
 
-    const contact = await contactsDb.create(contactData);
+    const contact = await contactsDb.update({ id, changes: contactData });
 
     if (!contact) {
       throw new ServiceUnavailableError(
@@ -30,7 +31,7 @@ export default function makePutContact({ contactsDb, validationService }) {
 
     return {
       status: "OK",
-      statusCode: 201,
+      statusCode: 200,
       body: {
         contact,
       },

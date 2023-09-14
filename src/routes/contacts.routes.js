@@ -8,6 +8,7 @@ router
   .get("/", expressCallback(contactsController.getContacts))
   .get("/:id", expressCallback(contactsController.getContact))
   .post("/", expressCallback(contactsController.postContact))
-  .delete("/:id", expressCallback(contactsController.deleteContact));
+  .delete("/:id", expressCallback(contactsController.deleteContact))
+  .put("/:id", expressCallback(contactsController.putContact));
 
 export default router;
