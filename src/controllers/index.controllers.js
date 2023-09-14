@@ -4,6 +4,7 @@ import makeGetContact from "./get-contact.controller.js";
 import makePostContact from "./post-contact.controller.js";
 import makeDeleteContact from "./delete-contact.controller.js";
 import makePutContact from "./put-contact.controller.js";
+import makePatchContact from "./patch-contact.controller.js";
 import validationService from "../services/validation/index.validation.js";
 
 const getContacts = makeGetContacts({ contactsDb });
@@ -17,6 +18,10 @@ const putContact = makePutContact({
   contactsDb,
   validationService: validationService.updateContactValidation,
 });
+const patchContact = makePatchContact({
+  contactsDb,
+  validationService: validationService.updateContactFavoriteValidation,
+});
 
 const contactsController = Object.freeze({
   getContacts,
@@ -24,6 +29,7 @@ const contactsController = Object.freeze({
   postContact,
   deleteContact,
   putContact,
+  patchContact,
 });
 
 export default contactsController;

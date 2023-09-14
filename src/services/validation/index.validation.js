@@ -1,5 +1,8 @@
 import createContactSchema from "./schemas/create-contact.validation-schema.js";
-import updateContactSchema from "./schemas/update-contact.validation-schema.js";
+import {
+  updateContactSchema,
+  updateContactFavoriteSchema,
+} from "./schemas/update-contact.validation-schema.js";
 import makeContactValidation from "./contact.validation.js";
 
 const createContactValidation = makeContactValidation({
@@ -8,10 +11,14 @@ const createContactValidation = makeContactValidation({
 const updateContactValidation = makeContactValidation({
   schema: updateContactSchema,
 });
+const updateContactFavoriteValidation = makeContactValidation({
+  schema: updateContactFavoriteSchema,
+});
 
 const validationService = Object.freeze({
   createContactValidation,
-  updateContactValidation
+  updateContactValidation,
+  updateContactFavoriteValidation,
 });
 
 export default validationService;

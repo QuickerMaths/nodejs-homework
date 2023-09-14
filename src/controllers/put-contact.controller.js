@@ -5,8 +5,10 @@ import {
 
 export default function makePutContact({ contactsDb, validationService }) {
   return async function putContact(httpRequest) {
-    const { id } = httpRequest.params;
-    const contactData = httpRequest.body;
+    const {
+      params: { id },
+      body: contactData,
+    } = httpRequest;
 
     await validationService({ contact: contactData });
 
@@ -25,7 +27,7 @@ export default function makePutContact({ contactsDb, validationService }) {
 
     if (!contact) {
       throw new ServiceUnavailableError(
-        "Contact cannot be created, due to server error, please try again later"
+        "Contact cannot be updated, due to server error, please try again later"
       );
     }
 

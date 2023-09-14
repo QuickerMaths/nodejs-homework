@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-const createContactSchema = Joi.object({
+const updateContactSchema = Joi.object({
   name: Joi.string().min(3).max(30).messages({
     "string.base": "Name must be a string",
     "string.min": "Name must contain at least 3 characters",
@@ -29,4 +29,11 @@ const createContactSchema = Joi.object({
   }),
 });
 
-export default createContactSchema;
+const updateContactFavoriteSchema = Joi.object({
+  favorite: Joi.boolean().required().messages({
+    "boolean.base": "Favorite must be a boolean",
+    "any.required": "Favorite is required",
+  }),
+});
+
+export { updateContactSchema, updateContactFavoriteSchema };
