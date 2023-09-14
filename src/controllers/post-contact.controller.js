@@ -4,7 +4,7 @@ export default function makePostContact({ contactsDb, validationService }) {
   return async function postContact(httpRequest) {
     const contactData = httpRequest.body;
 
-    await validationService({ contactData });
+    await validationService({ contact: contactData });
 
     const contact = await contactsDb.create(contactData);
 

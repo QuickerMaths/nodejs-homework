@@ -1,14 +1,11 @@
+import { ValidationError } from "../../utils/errors/ValidationError.js";
+
 export default function makeContactValidation({ schema }) {
   return async function validate({ contact }) {
-    try {
-      const result = await schema.validate(
-        { ...contact },
-        { abortEarly: false }
-      );
+    const result = await schema.validate({ ...contact }, { abortEarly: false });
 
-      return result;
-    } catch (err) {
-      return err;
-    }
+    if (result.error) throw new ValidationError(result.error);
+
+    return result;
   };
 }
