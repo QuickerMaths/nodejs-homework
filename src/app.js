@@ -5,7 +5,7 @@ import config from "./config/config.js";
 import db from "../db/db.js";
 import { BaseError } from "./utils/errors/BaseError.js";
 
-// import contactsRouter from "./routes/api/contacts.js";
+import contactsRouter from "./routes/contacts.routes.js";
 
 const app = express();
 
@@ -13,7 +13,7 @@ logger({ app });
 app.use(cors());
 app.use(express.json());
 
-// app.use("/api/contacts", contactsRouter);
+app.use("/api/contacts", contactsRouter);
 
 app.use((req, res) => {
   return res.status(404).json({

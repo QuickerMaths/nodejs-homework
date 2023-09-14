@@ -1,30 +1,35 @@
 import Joi from "joi";
 
 const createContactSchema = Joi.object({
-  name: Joi.string()
-    .rule({ message: "Name must be a string" })
-    .ruleset.min(3)
-    .max(30)
-    .rule({ message: "Name must contain between 3 and 30 characters" })
-    .required()
-    .rule({ message: "Name is required" }),
+  name: Joi.string().min(3).max(30).required().messages({
+    "string.base": "Name must be a string",
+    "string.min": "Name must contain at least 3 characters",
+    "string.max": "Name must contain no more than 30 characters",
+    "any.required": "Name is required",
+  }),
 
   email: Joi.string()
     .email({
       minDomainSegments: 2,
       tlds: { allow: ["com", "net", "pl"] },
     })
-    .rule({ message: "Email must be a valid email" }),
-
-  phone: Joi.string()
-    .rule({ message: "Phone must be a string" })
-    .ruleset.min(6)
-    .max(12)
-    .rule({ message: "Phone must contain between 6 and 12 numbers" })
     .required()
-    .rule({ message: "Phone is required" }),
+    .messages({
+      "string.base": "Email must be a string",
+      "string.email": "Email must be a valid email",
+      "any.required": "Email is required",
+    }),
 
-  favorite: Joi.boolean().rule({ message: "Favorite must be a boolean" }),
+  phone: Joi.string().min(6).max(12).required().messages({
+    "string.base": "Phone must be a string",
+    "string.min": "Phone must contain at least 6 numbers",
+    "string.max": "Phone must contain no more than 12 numbers",
+    "any.required": "Phone is required",
+  }),
+
+  favorite: Joi.boolean().messages({
+    "boolean.base": "Favorite must be a boolean",
+  }),
 });
 
 export default createContactSchema;

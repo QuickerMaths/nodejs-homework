@@ -1,7 +1,7 @@
 import contactsDb from "../data-access/index.data-access.js";
 import makeGetContacts from "./get-contacts.controller.js";
 import makePostContact from "./post-contact.controller.js";
-import validationService from "../validation/index.validation.js";
+import validationService from "../services/validation/index.validation.js";
 
 const getContacts = makeGetContacts({ contactsDb });
 const postContact = makePostContact({
