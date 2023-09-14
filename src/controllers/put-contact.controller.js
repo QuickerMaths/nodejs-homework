@@ -3,8 +3,8 @@ import {
   ServiceUnavailableError,
 } from "../utils/errors/index.errors.js";
 
-export default function makePostContact({ contactsDb, validationService }) {
-  return async function postContact(httpRequest) {
+export default function makePutContact({ contactsDb, validationService }) {
+  return async function putContact(httpRequest) {
     const contactData = httpRequest.body;
 
     await validationService({ contact: contactData });
