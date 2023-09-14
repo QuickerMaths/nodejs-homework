@@ -1,10 +1,24 @@
-import { ServiceUnavailableError } from "../utils/errors/ServiceUnavailableError.js";
+import {
+  DuplicateError,
+  ServiceUnavailableError,
+} from "../utils/errors/index.errors.js";
 
 export default function makePostContact({ contactsDb, validationService }) {
   return async function postContact(httpRequest) {
     const contactData = httpRequest.body;
 
     await validationService({ contact: contactData });
+
+    const isInDb = await contactsDb.findByProperties({
+      email: contactData.email,
+      phone: contactData.phone,
+    });
+
+    if (isInDb) {
+      throw new DuplicateError(
+        "Contact with given email or phone number already exists"
+      );
+    }
 
     const contact = await contactsDb.create(contactData);
 
