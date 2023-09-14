@@ -6,6 +6,7 @@ const router = express.Router();
 
 router
   .get("/", expressCallback(contactsController.getContacts))
+  .get("/:id", expressCallback(contactsController.getContact))
   .post("/", expressCallback(contactsController.postContact));
 
 export default router;
