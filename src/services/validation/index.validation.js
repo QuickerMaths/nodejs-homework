@@ -5,6 +5,7 @@ import {
   updateContactFavoriteSchema,
 } from "./schemas/contacts/update-contact.validation-schema.js";
 import createUserSchema from "./schemas/users/create-user.validation-schema.js";
+import updateUserSchema from "./schemas/users/update-user.validation-schema.js";
 import loginUserSchema from "./schemas/users/login-user.validation-schema.js";
 
 const createContactValidation = makeValidation({
@@ -22,6 +23,9 @@ const createUserValidation = makeValidation({
 const loginUserValidation = makeValidation({
   schema: loginUserSchema,
 });
+const updateUserValidation = makeValidation({
+  schema: updateUserSchema,
+});
 
 const validationService = Object.freeze({
   createContactValidation,
@@ -29,6 +33,7 @@ const validationService = Object.freeze({
   updateContactFavoriteValidation,
   createUserValidation,
   loginUserValidation,
+  updateUserValidation,
 });
 
 export default validationService;

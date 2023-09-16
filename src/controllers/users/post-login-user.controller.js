@@ -30,8 +30,6 @@ export default function makePostLoginUser({
       changes: { token },
     });
 
-    console.log(updatedUser);
-
     if (!updatedUser) {
       throw new ServiceUnavailableError(
         "User cannot be logged in, due to server error, please try again later"

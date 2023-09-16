@@ -17,6 +17,7 @@ router
     expressCallback(usersController.getLogoutUser)
   )
   .post("/signup", expressCallback(usersController.postSignUpUser))
-  .post("/login", expressCallback(usersController.postLoginUser));
+  .post("/login", expressCallback(usersController.postLoginUser))
+  .patch("/", authMiddleware, expressCallback(usersController.patchUser));
 
 export default router;
