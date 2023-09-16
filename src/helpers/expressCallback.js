@@ -3,6 +3,7 @@ const expressCallback = (controller) => (req, res, next) => {
     body: req.body,
     user: req.user,
     params: req.params,
+    query: req.query,
   };
 
   controller(httpRequest)

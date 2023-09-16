@@ -1,8 +1,23 @@
 export default function makeContactDb({ model }) {
-  async function findAll() {
-    const contacts = await model.find();
+  async function findAll({ page, size }) {
+    const { total, contacts } = await model
+      .find()
+      .skip(page * size)
+      .limit(size)
+      .then(async (res) => {
+        if (!res) {
+          throw new Error("No contacts found");
+        }
 
-    return contacts;
+        const total = await model.countDocuments();
+
+        return {
+          total,
+          contacts: res,
+        };
+      });
+
+    return { total, contacts };
   }
 
   async function findByProperties({ email, phone }) {
