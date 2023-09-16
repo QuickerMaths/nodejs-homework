@@ -1,5 +1,6 @@
 import makePostSignUpUser from "./post-signup-user.controller.js";
 import makePostLoginUser from "./post-login-user.controller.js";
+import makeGetLogoutUser from "./get-logout-user.controller.js";
 import usersDb from "../../data-access/users/index.data-access.js";
 import authService from "../../services/auth/index.auth-service.js";
 import validationService from "../../services/validation/index.validation.js";
@@ -14,10 +15,12 @@ const postLoginUser = makePostLoginUser({
   validationService: validationService.loginUserValidation,
   authService,
 });
+const getLogoutUser = makeGetLogoutUser({ usersDb });
 
 const usersController = Object.freeze({
   postSignUpUser,
   postLoginUser,
+  getLogoutUser,
 });
 
 export default usersController;
