@@ -6,6 +6,7 @@ let controller;
 
 router
   .get("/current", controller)
+  .get("/logout", controller)
   .post("/signup", controller)
   .post("/login", controller);
 
