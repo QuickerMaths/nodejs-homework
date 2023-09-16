@@ -1,13 +1,13 @@
 import {
   DuplicateError,
   ServiceUnavailableError,
-} from "../utils/errors/index.errors.js";
+} from "../../utils/errors/index.errors.js";
 
 export default function makePostContact({ contactsDb, validationService }) {
   return async function postContact(httpRequest) {
     const contactData = httpRequest.body;
 
-    await validationService({ contact: contactData });
+    await validationService({ data: contactData });
 
     const isInDb = await contactsDb.findByProperties({
       email: contactData.email,

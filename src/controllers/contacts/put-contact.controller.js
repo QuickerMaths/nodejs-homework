@@ -1,7 +1,7 @@
 import {
   DuplicateError,
   ServiceUnavailableError,
-} from "../utils/errors/index.errors.js";
+} from "../../utils/errors/index.errors.js";
 
 export default function makePutContact({ contactsDb, validationService }) {
   return async function putContact(httpRequest) {

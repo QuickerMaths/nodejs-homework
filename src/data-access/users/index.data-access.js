@@ -1,5 +1,5 @@
-import User from "../../models/user.model.js";
-import makeUsersDb from "./users.data-access";
+import User from "../../models/users.model.js";
+import makeUsersDb from "./users.data-access.js";
 
 const usersDb = makeUsersDb({ model: User });
 

@@ -1,4 +1,4 @@
-import { NotFoundError } from "../utils/errors/NotFoundError.js";
+import { NotFoundError } from "../../utils/errors/NotFoundError.js";
 
 export default function makeGetContacts({ contactsDb }) {
   return async function getContacts() {

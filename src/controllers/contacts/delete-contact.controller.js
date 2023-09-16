@@ -1,4 +1,4 @@
-import { NotFoundError } from "../utils/errors/index.errors.js";
+import { NotFoundError } from "../../utils/errors/index.errors.js";
 
 export default function makeDeleteContact({ contactsDb }) {
   return async function deleteContact(httpRequest) {
