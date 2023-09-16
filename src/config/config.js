@@ -6,7 +6,7 @@ export default {
   },
   jwt: {
     jwtSecret: process.env.JWT_SECRET || "secret",
-    jwtExpiresIn: process.env.JWT_EXPIRES_IN || 3600,
+    jwtExpiresIn: process.env.JWT_EXPIRES_IN || 36,
     jwtRefreshSecret: process.env.JWT_REFRESH_SECRET || "secretRefresh",
     jwtRefreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || 86400,
   },

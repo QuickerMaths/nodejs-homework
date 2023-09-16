@@ -27,7 +27,7 @@ export default function makePostLoginUser({
 
     const updatedUser = await usersDb.update({
       userId: user._id,
-      changes: token,
+      changes: { token },
     });
 
     console.log(updatedUser);
