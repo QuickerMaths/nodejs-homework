@@ -6,7 +6,11 @@ import authMiddleware from "../middlewares/authMiddleware.js";
 const router = express.Router();
 
 router
-  // .get("/current", controller)
+  .get(
+    "/current",
+    authMiddleware,
+    expressCallback(usersController.getCurrentUser)
+  )
   .get(
     "/logout",
     authMiddleware,
