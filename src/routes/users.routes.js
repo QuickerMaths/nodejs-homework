@@ -9,7 +9,7 @@ let controller;
 router
   // .get("/current", controller)
   // .get("/logout", controller)
-  .post("/signup", expressCallback(usersController.postSignUpUser));
-// .post("/login", controller);
+  .post("/signup", expressCallback(usersController.postSignUpUser))
+  .post("/login", expressCallback(usersController.postLoginUser));
 
 export default router;

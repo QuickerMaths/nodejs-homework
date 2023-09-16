@@ -3,6 +3,7 @@ import { ValidationError } from "./ValidationError.js";
 import { DuplicateError } from "./DuplicateError.js";
 import { ServiceUnavailableError } from "./ServiceUnavailableError.js";
 import { NotFoundError } from "./NotFoundError.js";
+import { UnauthorizedError } from "./UnauthorizedError.js";
 
 export {
   BaseError,
@@ -10,4 +11,5 @@ export {
   DuplicateError,
   ServiceUnavailableError,
   NotFoundError,
+  UnauthorizedError,
 };

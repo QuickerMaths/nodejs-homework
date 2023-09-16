@@ -11,8 +11,17 @@ export default function makeUsersDb({ model }) {
     return user;
   }
 
+  async function update({ userId, changes }) {
+    const user = await model.findByIdAndUpdate(userId, {
+      ...changes,
+    });
+
+    return user;
+  }
+
   return Object.freeze({
     findByProperty,
     insert,
+    update,
   });
 }

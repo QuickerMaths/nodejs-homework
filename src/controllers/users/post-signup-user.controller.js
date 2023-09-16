@@ -25,7 +25,7 @@ export default function makePostSignUpUser({
     const user = await usersDb.insert({
       userData: {
         email: body.email,
-        password: await authService.hash.encrypt(body.password),
+        password: await authService.hash.encrypt({ password: body.password }),
       },
     });
 
