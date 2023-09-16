@@ -1,15 +1,19 @@
+import { NotFoundError } from "../../utils/errors/index.errors.js";
+
 export default function makeContactDb({ model }) {
-  async function findAll({ page, size }) {
+  async function findAll({ page, size, favorite }) {
     const { total, contacts } = await model
-      .find()
+      .find(favorite ? { favorite } : {})
       .skip(page * size)
       .limit(size)
       .then(async (res) => {
         if (!res) {
-          throw new Error("No contacts found");
+          throw new NotFoundError("No contacts found");
         }
 
-        const total = await model.countDocuments();
+        const total = await model
+          .find(favorite ? { favorite } : {})
+          .countDocuments();
 
         return {
           total,
