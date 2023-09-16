@@ -2,24 +2,19 @@ import { NotFoundError } from "../../utils/errors/index.errors.js";
 
 export default function makeContactDb({ model }) {
   async function findAll({ page, size, favorite }) {
-    const { total, contacts } = await model
-      .find(favorite ? { favorite } : {})
-      .skip(page * size)
-      .limit(size)
-      .then(async (res) => {
-        if (!res) {
-          throw new NotFoundError("No contacts found");
-        }
+    const query = favorite ? { favorite } : {};
+    const skip = page * size;
 
-        const total = await model
-          .find(favorite ? { favorite } : {})
-          .countDocuments();
+    const contactsQuery = model.find(query).skip(skip).limit(size);
 
-        return {
-          total,
-          contacts: res,
-        };
-      });
+    const [contacts, total] = await Promise.all([
+      contactsQuery,
+      model.countDocuments(query),
+    ]);
+
+    if (!contacts || total === 0) {
+      throw new NotFoundError("No contacts found");
+    }
 
     return { total, contacts };
   }
