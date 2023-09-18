@@ -12,9 +12,13 @@ export default function makeUsersDb({ model }) {
   }
 
   async function update({ userId, changes }) {
-    const user = await model.findByIdAndUpdate(userId, {
-      ...changes,
-    });
+    const user = await model.findByIdAndUpdate(
+      userId,
+      {
+        ...changes,
+      },
+      { returnOriginal: false }
+    );
 
     return user;
   }
