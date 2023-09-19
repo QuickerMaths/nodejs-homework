@@ -1,16 +1,13 @@
 import {
   DuplicateError,
   ServiceUnavailableError,
-} from "../utils/errors/index.errors.js";
+} from "../../utils/errors/index.errors.js";
 
-export default function makePutContact({ contactsDb, validationService }) {
-  return async function putContact(httpRequest) {
-    const {
-      params: { id },
-      body: contactData,
-    } = httpRequest;
+export default function makePostContact({ contactsDb, validationService }) {
+  return async function postContact(httpRequest) {
+    const contactData = httpRequest.body;
 
-    await validationService({ contact: contactData });
+    await validationService({ data: contactData });
 
     const isInDb = await contactsDb.findByProperties({
       email: contactData.email,
@@ -23,17 +20,17 @@ export default function makePutContact({ contactsDb, validationService }) {
       );
     }
 
-    const contact = await contactsDb.update({ id, changes: contactData });
+    const contact = await contactsDb.create(contactData);
 
     if (!contact) {
       throw new ServiceUnavailableError(
-        "Contact cannot be updated, due to server error, please try again later"
+        "Contact cannot be created, due to server error, please try again later"
       );
     }
 
     return {
       status: "OK",
-      statusCode: 200,
+      statusCode: 201,
       body: {
         contact,
       },

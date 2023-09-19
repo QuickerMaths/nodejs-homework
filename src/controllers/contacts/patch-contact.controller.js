@@ -1,4 +1,4 @@
-import { ServiceUnavailableError } from "../utils/errors/index.errors.js";
+import { ServiceUnavailableError } from "../../utils/errors/index.errors.js";
 
 export default function makePatchContact({ contactsDb, validationService }) {
   return async function patchContact(httpRequest) {

@@ -1,8 +1,22 @@
-export default function makeContactDb({ model }) {
-  async function findAll() {
-    const contacts = await model.find();
+import { NotFoundError } from "../../utils/errors/index.errors.js";
 
-    return contacts;
+export default function makeContactDb({ model }) {
+  async function findAll({ page, size, favorite }) {
+    const query = favorite ? { favorite } : {};
+    const skip = page * size;
+
+    const contactsQuery = model.find(query).skip(skip).limit(size);
+
+    const [contacts, total] = await Promise.all([
+      contactsQuery,
+      model.countDocuments(query),
+    ]);
+
+    if (!contacts || total === 0) {
+      throw new NotFoundError("No contacts found");
+    }
+
+    return { total, contacts };
   }
 
   async function findByProperties({ email, phone }) {
