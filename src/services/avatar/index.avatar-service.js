@@ -1,11 +1,9 @@
-import gravatarUrl from "gravatar-url";
-
-function createAvatarURL(email) {
-  return gravatarUrl(email, { protocol: "http", s: "250" });
-}
+import createAvatarURL from "./url/avatar-url.avatar-service.js";
+import imageManipulation from "./image-manipulation/image-manipulation.avatar-service.js";
 
 const avatarService = Object.freeze({
   createAvatarURL,
+  imageManipulation,
 });
 
 export default avatarService;

@@ -4,6 +4,7 @@ import { DuplicateError } from "./DuplicateError.js";
 import { ServiceUnavailableError } from "./ServiceUnavailableError.js";
 import { NotFoundError } from "./NotFoundError.js";
 import { UnauthorizedError } from "./UnauthorizedError.js";
+import { BadRequestError } from "./BadRequestError.js";
 
 export {
   BaseError,
@@ -12,4 +13,5 @@ export {
   ServiceUnavailableError,
   NotFoundError,
   UnauthorizedError,
+  BadRequestError,
 };
