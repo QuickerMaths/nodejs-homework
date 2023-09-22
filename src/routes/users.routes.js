@@ -16,6 +16,10 @@ router
     authMiddleware,
     expressCallback(usersController.getLogoutUser)
   )
+  .get(
+    "/verify/:verificationToken",
+    expressCallback(usersController.getVerifyUser)
+  )
   .post("/signup", expressCallback(usersController.postSignUpUser))
   .post("/login", expressCallback(usersController.postLoginUser))
   .patch("/", authMiddleware, expressCallback(usersController.patchUser));
