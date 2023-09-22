@@ -4,8 +4,8 @@ function createVerificationToken() {
   return nanoid();
 }
 
-const verificationTokenService = {
+const verificationTokenService = Object.freeze({
   createVerificationToken,
-};
+});
 
 export default verificationTokenService;

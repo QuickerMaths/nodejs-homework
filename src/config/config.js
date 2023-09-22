@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 export default {
   clientURL: process.env.CLIENT_URL || "http://localhost:3000",
   port: process.env.PORT || 3000,

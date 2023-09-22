@@ -1,6 +1,6 @@
 import sgMail from "@sendgrid/mail";
 import config from "../../config/config.js";
-import { ServiceUnavailableError } from "../../utils/errors/ServiceUnavailableError";
+import { ServiceUnavailableError } from "../../utils/errors/index.errors.js";
 
 sgMail.setApiKey(config.sendgrid.apiKey);
 
@@ -9,8 +9,11 @@ async function emailSender({ to, verificationToken }) {
     to,
     from: "cult.b3ats@gmail.com",
     subject: "Email verification",
-    text: "Please verify your email, by clicking on the link below",
-    html: `<a href="${config.clientURL}/users/verify/${verificationToken}">Verify email</a>`,
+    html: `
+    <h1>Verify your email</h1>
+    <p>Click on the link below to verify your email</p>
+    <a href="${config.clientURL}/api/users/verify/${verificationToken}">Verify email</a>
+    `,
   };
 
   try {

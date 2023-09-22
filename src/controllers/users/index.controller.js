@@ -23,7 +23,7 @@ const postSignUpUser = makePostSignUpUser({
   validationService: validationService.createUserValidation,
   authService,
   avatarService: avatarService.createAvatarURL,
-  verificationTokenService,
+  verificationTokenService: verificationTokenService.createVerificationToken,
   emailSenderService: emailSenderService.emailSender,
 });
 

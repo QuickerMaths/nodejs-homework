@@ -13,7 +13,7 @@ export default function makeGetVerifyUser({ usersDb }) {
     });
 
     if (!user) {
-      throw new NotFoundError("User not found");
+      throw new NotFoundError("User  found");
     }
 
     const updatedUser = await usersDb.update({
