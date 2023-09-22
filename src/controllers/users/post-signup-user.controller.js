@@ -8,6 +8,7 @@ export default function makePostSignUpUser({
   validationService,
   authService,
   avatarService,
+  verificationTokenService,
 }) {
   return async function postSignUpUser(httpRequest) {
     const { body } = httpRequest;
@@ -28,6 +29,7 @@ export default function makePostSignUpUser({
         email: body.email,
         password: await authService.hash.encrypt({ password: body.password }),
         avatarURL: avatarService(body.email),
+        verificationToken: verificationTokenService(),
       },
     });
 

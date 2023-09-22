@@ -14,6 +14,7 @@ export default function makePostLoginUser({
       property: "email",
       value: body.email,
     });
+
     const isPasswordValid = await authService.hash.compare({
       password: body.password,
       hashedPassword: user.password,
@@ -21,6 +22,10 @@ export default function makePostLoginUser({
 
     if (!isPasswordValid || !user) {
       throw new UnauthorizedError("Invalid email or password");
+    }
+
+    if (!user.verify) {
+      throw new UnauthorizedError("Email is not verified");
     }
 
     const token = await authService.jwt.signToken({ payload: user._id });

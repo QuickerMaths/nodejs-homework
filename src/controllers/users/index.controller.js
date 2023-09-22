@@ -9,6 +9,7 @@ import usersDb from "../../data-access/users/index.data-access.js";
 import authService from "../../services/auth/index.auth-service.js";
 import validationService from "../../services/validation/index.validation.js";
 import avatarService from "../../services/avatar/index.avatar-service.js";
+import verificationTokenService from "../../services/verification-token/index.verification-token-service.js";
 
 const getCurrentUser = makeGetCurrentUser({ usersDb });
 
@@ -21,6 +22,7 @@ const postSignUpUser = makePostSignUpUser({
   validationService: validationService.createUserValidation,
   authService,
   avatarService: avatarService.createAvatarURL,
+  verificationTokenService,
 });
 
 const postLoginUser = makePostLoginUser({
