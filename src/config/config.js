@@ -1,4 +1,5 @@
 export default {
+  clientURL: process.env.CLIENT_URL || "http://localhost:3000",
   port: process.env.PORT || 3000,
   ip: process.env.HOST || "0.0.0.0",
   db: {
@@ -9,5 +10,8 @@ export default {
     jwtExpiresIn: process.env.JWT_EXPIRES_IN || 3600,
     jwtRefreshSecret: process.env.JWT_REFRESH_SECRET || "secretRefresh",
     jwtRefreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || 86400,
+  },
+  sendgrid: {
+    apiKey: process.env.SENDGRID_API_KEY || "sendgridApiKey",
   },
 };

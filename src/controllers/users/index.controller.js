@@ -10,6 +10,7 @@ import authService from "../../services/auth/index.auth-service.js";
 import validationService from "../../services/validation/index.validation.js";
 import avatarService from "../../services/avatar/index.avatar-service.js";
 import verificationTokenService from "../../services/verification-token/index.verification-token-service.js";
+import emailSenderService from "../../services/email-sender/index.email-sender-service.js";
 
 const getCurrentUser = makeGetCurrentUser({ usersDb });
 
@@ -23,6 +24,7 @@ const postSignUpUser = makePostSignUpUser({
   authService,
   avatarService: avatarService.createAvatarURL,
   verificationTokenService,
+  emailSenderService: emailSenderService.emailSender,
 });
 
 const postLoginUser = makePostLoginUser({

@@ -9,6 +9,7 @@ export default function makePostSignUpUser({
   authService,
   avatarService,
   verificationTokenService,
+  emailSenderService,
 }) {
   return async function postSignUpUser(httpRequest) {
     const { body } = httpRequest;
@@ -38,6 +39,11 @@ export default function makePostSignUpUser({
         "User cannot be created, due to server error, please try again later"
       );
     }
+
+    await emailSenderService({
+      to: user.email,
+      verificationToken: user.verificationToken,
+    });
 
     return {
       status: "OK",
