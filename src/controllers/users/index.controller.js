@@ -3,6 +3,7 @@ import makeGetLogoutUser from "./get-logout-user.controller.js";
 import makeGetVerifyUser from "./get-verify-user.controller.js";
 import makePostSignUpUser from "./post-signup-user.controller.js";
 import makePostLoginUser from "./post-login-user.controller.js";
+import makePostVerifyUser from "./post-verify-user.controller.js";
 import makePatchUser from "./patch-user.controller.js";
 import makePatchUserAvatar from "./patch-user-avatar.controller.js";
 import usersDb from "../../data-access/users/index.data-access.js";
@@ -33,6 +34,8 @@ const postLoginUser = makePostLoginUser({
   authService,
 });
 
+const postVerifyUser = makePostVerifyUser();
+
 const patchUser = makePatchUser({
   usersDb,
   validationService: validationService.updateUserValidation,
@@ -50,6 +53,7 @@ const usersController = Object.freeze({
   getVerifyUser,
   postSignUpUser,
   postLoginUser,
+  postVerifyUser,
   patchUser,
   patchUserAvatar,
 });
