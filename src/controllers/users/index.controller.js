@@ -14,7 +14,7 @@ const getCurrentUser = makeGetCurrentUser({ usersDb });
 
 const getLogoutUser = makeGetLogoutUser({ usersDb });
 
-const getVerifyUser = makeGetVerifyUser();
+const getVerifyUser = makeGetVerifyUser({ usersDb });
 
 const postSignUpUser = makePostSignUpUser({
   usersDb,
