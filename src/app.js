@@ -10,9 +10,10 @@ import usersRouter from "./routes/users.routes.js";
 
 const app = express();
 
-logger({ app });
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"));
+logger({ app });
 
 app.use("/api/contacts", contactsRouter);
 app.use("/api/users", usersRouter);
