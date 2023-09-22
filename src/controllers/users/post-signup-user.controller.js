@@ -7,6 +7,7 @@ export default function makePostSignUpUser({
   usersDb,
   validationService,
   authService,
+  avatarService,
 }) {
   return async function postSignUpUser(httpRequest) {
     const { body } = httpRequest;
@@ -26,6 +27,7 @@ export default function makePostSignUpUser({
       userData: {
         email: body.email,
         password: await authService.hash.encrypt({ password: body.password }),
+        avatarURL: avatarService(body.email),
       },
     });
 
