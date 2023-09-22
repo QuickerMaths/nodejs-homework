@@ -34,7 +34,10 @@ const postLoginUser = makePostLoginUser({
   authService,
 });
 
-const postVerifyUser = makePostVerifyUser();
+const postVerifyUser = makePostVerifyUser({
+  usersDb,
+  emailSenderService: emailSenderService.emailSender,
+});
 
 const patchUser = makePatchUser({
   usersDb,
