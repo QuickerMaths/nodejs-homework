@@ -8,6 +8,8 @@ export default function makePostSignUpUser({
   validationService,
   authService,
   avatarService,
+  verificationTokenService,
+  emailSenderService,
 }) {
   return async function postSignUpUser(httpRequest) {
     const { body } = httpRequest;
@@ -28,6 +30,7 @@ export default function makePostSignUpUser({
         email: body.email,
         password: await authService.hash.encrypt({ password: body.password }),
         avatarURL: avatarService(body.email),
+        verificationToken: verificationTokenService(),
       },
     });
 
@@ -36,6 +39,11 @@ export default function makePostSignUpUser({
         "User cannot be created, due to server error, please try again later"
       );
     }
+
+    await emailSenderService({
+      to: user.email,
+      verificationToken: user.verificationToken,
+    });
 
     return {
       status: "OK",
